@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.johann.swampAPI.domain.User;
+import com.johann.swampAPI.dto.UserDTO;
 import com.johann.swampAPI.repository.UserRepository;
 import com.johann.swampAPI.services.exception.ObjectNotFoundException;
 
@@ -25,4 +26,11 @@ public class UserService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 		}
 	
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+	}
 }
