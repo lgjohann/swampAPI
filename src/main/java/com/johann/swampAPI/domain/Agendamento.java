@@ -6,26 +6,33 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="user")
-public class User implements Serializable{
+@Document(collection="agendamento")
+public class Agendamento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
 	private String name;
-	private String email;
+	private String date;
+	private String hour;
+	private String descricao;
 	
-	public User() {
+	public Agendamento() {
 		
 	}
 
-	public User(String id, String name, String email) {
+	public Agendamento(String id, String name, String date, String hour, String descricao) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.email = email;
+		this.date = date;
+		this.hour = hour;
+		this.descricao = descricao;
 	}
 
+
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -42,12 +49,28 @@ public class User implements Serializable{
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getDate() {
+		return date;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getHour() {
+		return hour;
+	}
+
+	public void setHour(String hour) {
+		this.hour = hour;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -63,7 +86,7 @@ public class User implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Agendamento other = (Agendamento) obj;
 		return Objects.equals(id, other.id);
 	}
 }

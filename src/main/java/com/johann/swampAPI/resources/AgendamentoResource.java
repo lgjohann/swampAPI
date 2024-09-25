@@ -16,35 +16,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.johann.swampAPI.domain.User;
-import com.johann.swampAPI.dto.UserDTO;
-import com.johann.swampAPI.services.UserService;
+import com.johann.swampAPI.domain.Agendamento;
+import com.johann.swampAPI.dto.AgendamentoDTO;
+import com.johann.swampAPI.services.AgendamentoService;
 
 
 @RestController
-@RequestMapping(value="/users")
-public class UserResource {
+@RequestMapping(value="/agendamentos")
+public class AgendamentoResource {
 
 	@Autowired
-	private UserService service;
+	private AgendamentoService service;
 	
 	
 	@GetMapping
-	public ResponseEntity<List<UserDTO>>  findAll() {
-		List<User> list = service.findAll();
-		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+	public ResponseEntity<List<AgendamentoDTO>>  findAll() {
+		List<Agendamento> list = service.findAll();
+		List<AgendamentoDTO> listDto = list.stream().map(x -> new AgendamentoDTO(x)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@GetMapping(value="/{id}")
-	public ResponseEntity<UserDTO>  findById(@PathVariable String id) {
-		User obj = service.findById(id);
-		return ResponseEntity.ok().body(new UserDTO(obj));
+	public ResponseEntity<AgendamentoDTO>  findById(@PathVariable String id) {
+		Agendamento obj = service.findById(id);
+		return ResponseEntity.ok().body(new AgendamentoDTO(obj));
 	}
 	
 	@PostMapping()
-	public ResponseEntity<Void>  insert(@RequestBody UserDTO objDto) {
-		User obj = service.fromDTO(objDto);
+	public ResponseEntity<Void>  insert(@RequestBody AgendamentoDTO objDto) {
+		Agendamento obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -57,8 +57,8 @@ public class UserResource {
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<Void>  update(@RequestBody UserDTO objDto, @PathVariable String id) {
-		User obj = service.fromDTO(objDto);
+	public ResponseEntity<Void>  update(@RequestBody AgendamentoDTO objDto, @PathVariable String id) {
+		Agendamento obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

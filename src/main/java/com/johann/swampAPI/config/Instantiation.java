@@ -6,29 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.johann.swampAPI.domain.User;
-import com.johann.swampAPI.repository.UserRepository;
+import com.johann.swampAPI.domain.Agendamento;
+import com.johann.swampAPI.repository.AgendamentoRepository;
 
 
 @Configuration
 public class Instantiation implements CommandLineRunner{
 
 	@Autowired
-	private UserRepository userRepository;
+	private AgendamentoRepository AgendamentoRepository;
 	
 	
 	@Override
 	public void run(String... args) throws Exception {
 
 		
-		userRepository.deleteAll();
+		AgendamentoRepository.deleteAll();
 		
-		User maria = new User(null, "Maria Brown", "maria@gmail.com");
-		User alex = new User(null, "Alex Green", "alex@gmail.com");
-		User bob = new User(null, "Bob Grey", "bob@gmail.com");
+		Agendamento maria = new Agendamento(null, "Maria Brown", "21/09/2024", "15:52", "descricao");
+		Agendamento alex = new Agendamento(null, "Alex Green", "23/09/2024", "15:52", "descricao");
+		Agendamento bob = new Agendamento(null, "Bob Grey", "25/09/2024", "13:30", "descricao");
 
 		
-		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		AgendamentoRepository.saveAll(Arrays.asList(maria, alex, bob));
 	}
 
 }
