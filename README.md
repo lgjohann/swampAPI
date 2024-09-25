@@ -1,6 +1,6 @@
 # API do aplicativo de agendamnto da Swamp Studio
 
-A arquitetuda da API é dada por:
+A arquitetura da API é dada por:
 
 ![arquitetura da api swamp](https://github.com/user-attachments/assets/da5d5625-133b-41e9-8fef-5adfbd63de46)
 
